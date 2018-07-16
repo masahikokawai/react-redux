@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function App(props) {
-  return (<div>React from functional App</div>);
+class App extends Component {
+  render() {
+    return (<div>React from class App</div>);
+  }
 }
 
 export default App;
