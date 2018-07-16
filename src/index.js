@@ -1,4 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-ReactDOM.render(<div>react-redux!!!</div>, document.querySelector('.container'));
+import App from './components/app'
+
+ReactDOM.render(<App />, document.querySelector('.container'));
