@@ -17,6 +17,8 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "import-glob-loader": "^1.1.0",
     "node-sass": "^4.9.2",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.0",
