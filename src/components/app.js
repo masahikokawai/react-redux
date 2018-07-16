@@ -10,9 +10,9 @@ class App extends Component {
     }
   }
 
-  handleNameChange(e) {
-    console.log(e.target.value);
-    this.setState({ name: e.target.value });
+  handleNameChange(name) {
+    console.log(name);
+    this.setState({ name });
   }
 
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
         <input
           type="text"
           value={this.state.name}
-          onChange={e => this.handleNameChange(e)}
+          onChange={e => this.handleNameChange(e.target.value)}
         />
         <Greeting name={this.state.name} />
       </div>
