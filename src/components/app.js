@@ -11,16 +11,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 35.6585805,
-      lng: 139.7454329,
+      location = {
+        lat: 35.6585805,
+        lng: 139.7454329,
+      },
     };
   }
 
   setErrorMessage(message) {
     this.setState({
       address: message,
-      lat: 0,
-      lng: 0,
+      location: {
+        lat: 0,
+        lng: 0,
+      },
     });
   }
 
@@ -34,11 +38,9 @@ class App extends Component {
         const result = data.results[0];
         switch (data.status) {
           case 'OK': {
-            const location = result.geometry.location;
             this.setState({
               address: result.formatted_address,
-              lat: location.lat,
-              lng: location.lng,
+              location: result.geometry.location,
             });
             break;
           }
@@ -81,10 +83,9 @@ class App extends Component {
         <SearchForm onSubmit={place => this.handlePlaceSubmit(place)} />
         <GeocodeResult
           address={this.state.address}
-          lat={this.state.lat}
-          lng={this.state.lng}
+          location={this.state.location}
         />
-        <Map lat={this.state.lat} lng={this.state.lng} />
+        <Map location={this.state.location} />
       </div>
     );
   }
