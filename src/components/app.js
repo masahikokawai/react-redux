@@ -13,19 +13,62 @@ class App extends Component {
     };
   }
 
+
+  setErrorMessage(message) {
+    this.setState({
+      address: message,
+      lat: 0,
+      lng: 0,
+    });
+  }
+
   handlePlaceSubmit(place) {
     console.log(place);
     axios
       .get(GEOCODE_ENDPOINT, { params: { address: place } })
       .then((results) => {
         console.log(results);
-        const result = results.data.results[0];
-        const location = result.geometry.location;
-        this.setState({
-          address: result.formatted_address,
-          lat: location.lat,
-          lng: location.lng,
-        });
+        const data = results.data;
+        const result = data.results[0];
+        switch (data.status) {
+          case 'OK': {
+            const location = result.geometry.location;
+            this.setState({
+              address: result.formatted_address,
+              lat: location.lat,
+              lng: location.lng,
+            });
+            break;
+          }
+          case 'ZERO_RESULTS': {
+            this.setErrorMessage('結果が見つかりませんでした');
+            break;
+          }
+          case 'OVER_DAILY_LIMIT': {
+            this.setErrorMessage('OVER_DAILY_LIMIT');
+            break;
+          }
+          case 'OVER_QUERY_LIMIT': {
+            this.setErrorMessage('OVER_QUERY_LIMIT');
+            break;
+          }
+          case 'REQUEST_DENIED': {
+            this.setErrorMessage('REQUEST_DENIED');
+            break;
+          }
+          case 'INVALID_REQUEST': {
+            this.setErrorMessage('INVALID_REQUEST');
+            break;
+          }
+          case 'UNKNOWN_ERROR': {
+            this.setErrorMessage('UNKNOWN_ERROR');
+            break;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+        this.setErrorMessage('通信に失敗しました');
       });
   }
 
