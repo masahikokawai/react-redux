@@ -16,10 +16,6 @@ class App extends Component {
         lat: 35.6585805,
         lng: 139.7454329,
       },
-      hotels: [
-        { id: 111, name: 'ホテルオークラ', url: 'https://google.com' },
-        { id: 222, name: 'プリンスホテル', url: 'https://yahoo.co.jp' },
-      ],
     };
   }
 
