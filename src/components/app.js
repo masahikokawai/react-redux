@@ -73,7 +73,7 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className="app">
         <h1>緯度経度検索</h1>
         <SearchForm onSubmit={place => this.handlePlaceSubmit(place)} />
         <GeocodeResult
