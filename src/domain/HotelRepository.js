@@ -22,6 +22,8 @@ export const searchHotelByLocation = (location) => {
           url: basicInfo.hotelInformationUrl,
           thumbUrl: basicInfo.hotelThumbnailUrl,
           price: price ? `${price}円` : '金額不明',
+          reviewAverage: basicInfo.reviewAverage,
+          reviewCount: basicInfo.reviewCount,
         };
       });
     });
