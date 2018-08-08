@@ -16,8 +16,8 @@ class App extends Component {
         lng: 139.7454329,
       },
       hotels: [
-        { name: 'ホテルオークラ' },
-        { name: 'プリンスホテル' },
+        { id: 111, name: 'ホテルオークラ', url: 'https://google.com' },
+        { id: 222, name: 'プリンスホテル', url: 'https://yahoo.co.jp' },
       ],
     };
   }
@@ -79,15 +79,16 @@ class App extends Component {
   render () {
     return (
       <div className="app">
-        <h1 className="app-title">緯度経度検索</h1>
+        <h1 className="app-title">ホテル検索</h1>
         <SearchForm onSubmit={place => this.handlePlaceSubmit(place)} />
         <div className="result-area">
           <Map location={this.state.location} />
-          <div>
+          <div className="result-right">
             <GeocodeResult
               address={this.state.address}
               location={this.state.location}
             />
+            <h2>ホテル検索結果</h2>
             <HotelsTable hotels={this.state.hotels} />
           </div>
         </div>
