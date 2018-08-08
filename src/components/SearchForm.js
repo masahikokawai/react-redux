@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class SearchFrom extends Component {
-
   constructor(props) {
   	super(props);
     this.state = {
@@ -28,8 +27,8 @@ class SearchFrom extends Component {
           size="30"
           value={this.state.place}
           onChange={e => this.handlePlaceChange(e.target.value)}
-         />
-         <input className="submit-button" type="submit" value="検索" />
+        />
+        <input className="submit-button" type="submit" value="検索" />
       </form>
     );
   }

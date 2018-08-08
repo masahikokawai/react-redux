@@ -6,6 +6,7 @@ import Map from './Map'
 import HotelsTable from './HotelsTable';
 
 import { geocode } from '../domain/Geocoder'
+import { searchHotelByLocation } from '../domain/HotelRepository';
 
 class App extends Component {
   constructor (props) {
@@ -33,16 +34,12 @@ class App extends Component {
   }
 
   handlePlaceSubmit (place) {
-    console.log(place)
     geocode(place)
       .then(({ status, address, location }) => {
-        console.log(status)
-        console.log(address)
-        console.log(location)
         switch (status) {
           case 'OK': {
             this.setState({ address, location })
-            break
+            return searchHotelByLocation(location)
           }
           case 'ZERO_RESULTS': {
             this.setErrorMessage('結果が見つかりませんでした')
@@ -68,10 +65,16 @@ class App extends Component {
             this.setErrorMessage('UNKNOWN_ERROR')
             break
           }
+          default: {
+            this.setErrorMessage('エラーが発生しました。')
+          }
         }
+        return []
+      })
+      .then((hotels) => {
+        this.setState({ hotels })
       })
       .catch((error) => {
-        console.log(error)
         this.setErrorMessage('通信に失敗しました')
       })
   }
