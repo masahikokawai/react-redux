@@ -12,7 +12,7 @@ const HotelRow = ({ hotel }) => (
       </a>
     </td>
     <td>
-      {hotel.price}円
+      {hotel.price}
     </td>
   </tr>
 );
@@ -22,7 +22,7 @@ HotelRow.propTypes = {
     name: PropTypes.string,
     url: PropTypes.string,
     thumbUrl: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
   }).isRequired,
 };
 
