@@ -1,3 +1,5 @@
+import geolib from 'geolib';
+
 import Rakuten from '../lib/Rakuten';
 
 const RAKUTEN_APP_ID = 'hoge';
@@ -15,6 +17,10 @@ export const searchHotelByLocation = (location) => {
       return result.data.hotels.map((hotel) => {
         const basicInfo = hotel.hotel[0].hotelBasicInfo;
         const price = basicInfo.hotelMinCharge;
+        const distance = geolib.getDistance(
+          { latitude: location.lat, longitude: location.lng },
+          { latitude: basicInfo.latitude, longitude: basicInfo.longitude },
+        );
         console.log(basicInfo);
         return {
           id: basicInfo.hotelNo,
@@ -24,6 +30,7 @@ export const searchHotelByLocation = (location) => {
           price: price ? `${price}円` : '金額不明',
           reviewAverage: basicInfo.reviewAverage,
           reviewCount: basicInfo.reviewCount,
+          distance,
         };
       });
     });

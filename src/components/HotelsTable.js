@@ -12,6 +12,7 @@ const HotelsTable = ({ hotels }) => (
         <th className="hotel-price-column">金額</th>
         <th>レビュー平均点</th>
         <th>レビュー件数</th>
+        <th>距離</th>
       </tr>
       {hotels.map(hotel => (<HotelRow key={hotel.id} hotel={hotel} />))}
     </tbody>
