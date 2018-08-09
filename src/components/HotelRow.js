@@ -12,7 +12,7 @@ const HotelRow = ({ hotel }) => (
       </a>
     </td>
     <td>
-      {hotel.price}
+      {hotel.price ? `${hotel.price}円` : '金額不明'}
     </td>
     <td>
       {hotel.reviewAverage}
@@ -31,7 +31,7 @@ HotelRow.propTypes = {
     name: PropTypes.string,
     url: PropTypes.string,
     thumbUrl: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     reviewAverage: PropTypes.number,
     reviewCount: PropTypes.number,
     distance: PropTypes.number,
