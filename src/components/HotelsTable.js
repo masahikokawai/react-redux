@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 import HotelRow from './HotelRow'
 
-const HotelsTable = ({ hotels, onSort }) => (
+const HotelsTable = ({ hotels, sortKey, onSort }) => (
   <table>
     <tbody>
       <tr>
         <th>画像</th>
         <th>ホテル名</th>
         <th className="hotel-price-column">金額</th>
-        <th onClick={() => onSort('reviewAverage')}>レビュー平均点</th>
+        <th onClick={() => onSort('reviewAverage')}>
+          レビュー平均点{sortKey === 'reviewAverage' ? '▲' : ''}
+         </th>
         <th>レビュー件数</th>
         <th>距離</th>
       </tr>
@@ -21,6 +23,7 @@ const HotelsTable = ({ hotels, onSort }) => (
 
 HotelsTable.propTypes = {
   hotels: PropTypes.arrayOf(PropTypes.any),
+  sortKey: PropTypes.string.isRequired,
   onSort: PropTypes.func.isRequired,
 };
 
