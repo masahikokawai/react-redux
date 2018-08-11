@@ -79,6 +79,13 @@ class App extends Component {
       })
   }
 
+  handleSortKeyChange(sortKey) {
+    this.setState({
+      sortKey,
+      hotels: sortedHotels(this.state.hotels, sortKey)
+    });
+  }
+
   render () {
     return (
       <div className="app">
@@ -92,7 +99,10 @@ class App extends Component {
               location={this.state.location}
             />
             <h2>ホテル検索結果</h2>
-            <HotelsTable hotels={this.state.hotels} />
+            <
+              HotelsTable hotels={this.state.hotels}
+              onSort={sortKey => this.handleSortKeyChange(sortKey)}
+            />
           </div>
         </div>
       </div>
