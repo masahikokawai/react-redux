@@ -13,6 +13,7 @@ const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 class App extends Component {
   constructor (props) {
+    console.log('constructor');
     super(props)
     this.state = {
       location: {
@@ -21,6 +22,35 @@ class App extends Component {
       },
       sortKey: 'price',
     };
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  componentWillRecieveProps() {
+    console.log('componentWillRecieveProps');
+  }
+
+  shouldComponentUpdate() {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillUpdate() {
+    console.log('componentWillUpdate');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
   }
 
   setErrorMessage (message) {
@@ -87,6 +117,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('render');
     return (
       <div className="app">
         <h1 className="app-title">ホテル検索</h1>

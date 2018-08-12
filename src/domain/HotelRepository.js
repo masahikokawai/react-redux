@@ -20,7 +20,7 @@ export const searchHotelByLocation = (location) => {
           { latitude: location.lat, longitude: location.lng },
           { latitude: basicInfo.latitude, longitude: basicInfo.longitude },
         );
-        console.log(basicInfo);
+        // console.log(basicInfo);
         return {
           id: basicInfo.hotelNo,
           name: basicInfo.hotelName,
