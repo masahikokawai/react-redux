@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 // import App from './components/App';
-import SearchPage from './containers/SearchPage';
+import SearchPage from './components/SearchPage';
 import reducer from './reducers/';
 
 ReactDOM.render(
