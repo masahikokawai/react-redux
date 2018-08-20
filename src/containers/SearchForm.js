@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { geocode } from '../domain/Geocoder'
 // import { searchHotelByLocation } from '../domain/HotelRepository';
+import { setPlace } from '../actions/';
 
 const SearchForm = props => (
   <form
@@ -37,7 +38,7 @@ const mapStateToProps = state => ({
   place: state.place,
 });
 const mapDispatchToProps = dispatch => ({
-  onPlaceChange: place => dispatch({ type: 'CHANGE_PLACE', place }),
+  onPlaceChange: place => dispatch(setPlace(place)),
   onSubmit: (place) => {
     geocode(place)
       .then(({ status, address, location }) => {
