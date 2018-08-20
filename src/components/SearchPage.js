@@ -8,9 +8,6 @@ import SearchForm from '../containers/SearchForm';
 // import Map from './Map';
 // import HotelsTable from './HotelsTable';
 
-import { geocode } from '../domain/Geocoder'
-import { searchHotelByLocation } from '../domain/HotelRepository';
-
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 class SearchPage extends Component {
@@ -56,52 +53,6 @@ class SearchPage extends Component {
     e.preventDefault();
     this.props.history.push(`/?place=${this.state.place}`);
     this.startSearch();
-  }
-
-  startSearch () {
-    geocode(this.state.place)
-      .then(({ status, address, location }) => {
-        switch (status) {
-          case 'OK': {
-            this.setState({ address, location })
-            return searchHotelByLocation(location)
-          }
-          case 'ZERO_RESULTS': {
-            this.setErrorMessage('結果が見つかりませんでした')
-            break
-          }
-          case 'OVER_DAILY_LIMIT': {
-            this.setErrorMessage('OVER_DAILY_LIMIT')
-            break
-          }
-          case 'OVER_QUERY_LIMIT': {
-            this.setErrorMessage('OVER_QUERY_LIMIT')
-            break
-          }
-          case 'REQUEST_DENIED': {
-            this.setErrorMessage('REQUEST_DENIED')
-            break
-          }
-          case 'INVALID_REQUEST': {
-            this.setErrorMessage('INVALID_REQUEST')
-            break
-          }
-          case 'UNKNOWN_ERROR': {
-            this.setErrorMessage('UNKNOWN_ERROR')
-            break
-          }
-          default: {
-            this.setErrorMessage('エラーが発生しました。')
-          }
-        }
-        return []
-      })
-      .then((hotels) => {
-        this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) })
-      })
-      .catch((error) => {
-        this.setErrorMessage('通信に失敗しました')
-      })
   }
 
   handleSortKeyChange(sortKey) {

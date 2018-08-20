@@ -1,4 +1,4 @@
-export default (state= { place: 'hoge' }, action) => {
+export default (state= { place: '東京タワー' }, action) => {
   console.log('action', action);
   switch (action.type) {
   	case 'CHANGE_PLACE':
